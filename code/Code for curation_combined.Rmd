@@ -1,0 +1,185 @@
+---
+title: "Project Milestone 2: Curation"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Loading Package
+if(!require("dplyr")){install.packages("dplyr")}
+if(!require("tidyr")){install.packages("tidyr")}
+if(!require("sf")){install.packages("sf")}
+```
+
+##  The box below is for illustration propose
+```{r}
+#Drop the columns which don't have observations
+attribute = read.csv(file = "attribute_1.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+#Extract column names
+column_name = colnames(attribute)[2:ncol(attribute)]
+
+#Convert to tidy data and sort
+population = attribute %>%
+  pivot_longer(column_name,names_to = "Year",values_to = "Attribute_1") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+```
+
+## All attributes
+```{r}
+#Total population
+population = read.csv(file = "AnnualbyProvince.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_pop = colnames(population)[2:ncol(population)]
+
+population = population %>%
+  pivot_longer(column_pop,names_to = "Year",values_to = "Population") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Birth rate
+birth = read.csv(file = "birth.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_bir = colnames(birth)[2:ncol(birth)]
+
+birth = birth %>%
+  pivot_longer(column_bir,names_to = "Year",values_to = "Birth_Rate") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Death rate
+death = read.csv(file = "death.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_dea = colnames(death)[2:ncol(death)]
+
+death = death %>%
+  pivot_longer(column_dea,names_to = "Year",values_to = "Death_Rate") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Natural growth rate
+growth = read.csv(file = "growth.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_grow = colnames(growth)[2:ncol(growth)]
+
+growth = growth %>%
+  pivot_longer(column_grow,names_to = "Year",values_to = "Natural_Growth_Rate") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Electricity comsumption
+electricity = read.csv(file = "electricity.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_elec = colnames(electricity)[2:ncol(electricity)]
+
+electricity = electricity %>%
+  pivot_longer(column_elec,names_to = "Year",values_to = "Electricity_Consumption") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Gross Output Value of Agriculture
+algriculture = read.csv(file = "algriculture.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_alg = colnames(algriculture)[2:ncol(algriculture)]
+
+algriculture = algriculture %>%
+  pivot_longer(column_alg,names_to = "Year",values_to = "Gross_Output") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Consumer Price Index
+price = read.csv(file = "price.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_alg = colnames(price)[2:ncol(price)]
+
+price = price %>%
+  pivot_longer(column_alg,names_to = "Year",values_to = "price") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Gross Regional Product
+product = read.csv(file = "product.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_alg = colnames(product)[2:ncol(product)]
+
+product = product %>%
+  pivot_longer(column_alg,names_to = "Year",values_to = "product") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Local Governments Tax Revenue
+tax = read.csv(file = "tax.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_alg = colnames(tax)[2:ncol(tax)]
+
+tax = tax %>%
+  pivot_longer(column_alg,names_to = "Year",values_to = "tax") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+
+#Average Wage of Employed Persons in Urban Units
+wage = read.csv(file = "wage.csv",header = T,skip = 3) %>%
+  mutate(X2020 = NULL) %>%
+  filter(is.na(X2019) != 1)
+
+column_alg = colnames(wage)[2:ncol(wage)]
+
+wage = wage %>%
+  pivot_longer(column_alg,names_to = "Year",values_to = "wage") %>%
+  separate(Year,sep = 1,into = c("X","Year"),convert = T) %>%
+  mutate(X = NULL) %>%
+  arrange(Region,desc(Year))
+```
+
+
+```{r}
+#Combine the attributes all together into data.csv
+data = cbind(population,birth$Birth_Rate,death$Death_Rate,growth$Natural_Growth_Rate,electricity$Electricity_Consumption,algriculture$Gross_Output, price$price, product$product, tax$tax, wage$wage)
+#write.csv(data,file = "data.csv")
+```
+
+## A little processing for GeoJSON
+
+```{r}
+names = read.csv("Region_order.csv")
+China = read_sf("China_ali.json") %>%
+  select(adcode, name, geometry) %>%
+  filter(name != "") %>%
+  mutate(name = names$x)
+write_sf(China, "China_map.geojson", driver = "Geojson")
+```
+
