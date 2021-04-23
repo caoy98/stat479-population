@@ -1,0 +1,33 @@
+---
+title: "cluster"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#cluster
+
+```{r,warning=FALSE,message=FALSE}
+library("dplyr")
+library("readr")
+library("tibble")
+library("tidygraph")
+library("ggplot2")
+library("ggraph")
+```
+
+```{r,warning=FALSE,message=FALSE}
+data = read_csv("data.csv")
+data_subset = data %>% 
+  filter(Year == 2019) %>% 
+  select(-X,-Year)
+
+D = data_subset %>% 
+  column_to_rownames(var = "Region") %>%
+  dist()  
+hclust_result <- hclust(D)
+plot(hclust_result, cex = 0.6,xlab = "Provinces of China in Year 2019",sub = "")
+```
+
