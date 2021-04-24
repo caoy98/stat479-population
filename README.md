@@ -1,9 +1,13 @@
-# stat479-population
+# STAT 479 Final Project
 
 ## Contents
-Introduction
+
+1.Introduction
+
 [2.Data Folder](https://github.com/caoy98/stat479-population/tree/main/data)
+
 [3.Code Folder](https://github.com/caoy98/stat479-population/tree/main/code)
+
 [4.Initial Report]()
 
 ## Introduction
@@ -11,3 +15,12 @@ According to the National Bureau of Statistics of China's annual report, we coll
 
 ## Code
 
+### Observable
+
+[Interactive Choropleth Map]()
+
+### Rmarkdown
+
+[Factor Analysis](https://github.com/caoy98/stat479-population/blob/main/code/FactorAnalysis.R)
+
+[Hierarchical Clustering](https://github.com/caoy98/stat479-population/blob/main/code/cluster.Rmd)
