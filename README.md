@@ -17,7 +17,7 @@ According to the National Bureau of Statistics of China's annual report, we coll
 
 ### Observable
 
-[Interactive Choropleth Map](https://observablehq.com/d/236476c282157436)
+[Interactive Choropleth Map](https://observablehq.com/@caoy98/project-initial-implement)
 
 ### Rmarkdown
 
