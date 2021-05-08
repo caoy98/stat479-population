@@ -28,6 +28,6 @@ D = data_subset %>%
   column_to_rownames(var = "Region") %>%
   dist()  
 hclust_result <- hclust(D)
-plot(hclust_result, cex = 0.6,xlab = "Provinces of China in Year 2019",sub = "")
+plot(hclust_result, cex = 0.6, xlab = "Provinces of China in Year 2019", sub = "", ylab = "", axes = FALSE)
 ```
 
